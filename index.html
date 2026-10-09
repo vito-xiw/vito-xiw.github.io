@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vito Vidović | Photography</title>
+<meta name="description" content="Event, festival and live music photography by Vito Vidović, Zagreb.">
+<meta name="theme-color" content="#0b0b0b">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vito Vidović | Photography">
+<meta property="og:description" content="Event, festival and live music photography by Vito Vidović, Zagreb.">
+<meta property="og:image" content="https://vito-xiw.github.io/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://i.ytimg.com" crossorigin>
+<link rel="preload" as="image" href="assets/img/huskaj-festival/huskaj-festival-11-1280.webp" imagesrcset="assets/img/huskaj-festival/huskaj-festival-11-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-11-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-11-2048.webp 2048w" imagesizes="100vw" fetchpriority="high">
+<style>
+:root{
+  --bg:#fff;--fg:#0b0b0b;--muted:#8c8c8c;--line:#e8e8e8;
+  --pad:clamp(16px,3vw,40px);--gap:clamp(4px,.6vw,8px);
+  --hh:56px;--font:"Helvetica Neue",Helvetica,Arial,system-ui,-apple-system,sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--hh) + 54px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 14px/1.45 var(--font);letter-spacing:-.005em;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* header: blends over hero and white page */
+.hdr{position:fixed;inset:0 0 auto;z-index:50;height:var(--hh);padding:0 var(--pad);padding-top:env(safe-area-inset-top);display:flex;align-items:center;justify-content:space-between;color:#fff;mix-blend-mode:difference;pointer-events:none}
+.hdr a{pointer-events:auto}
+.brand{font-weight:500;font-size:15px;letter-spacing:-.01em}
+.nav{display:flex;gap:clamp(14px,2.4vw,32px);font-size:13px}
+.nav a{opacity:.85;transition:opacity .2s}
+.nav a:hover{opacity:1}
+.hdr.solid{mix-blend-mode:normal;background:var(--bg);color:var(--fg)}
+
+/* hero */
+.hero{position:relative;height:100vh;height:100svh;min-height:420px;background:#111;color:#fff;overflow:hidden}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s var(--ease)}
+.slide.on{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 7s linear}
+.slide.on img{transform:scale(1)}
+.hero::after{content:"";position:absolute;inset:auto 0 0;height:40%;background:linear-gradient(transparent,rgba(0,0,0,.45));pointer-events:none}
+.hero-ui{position:absolute;z-index:2;inset:auto var(--pad) calc(var(--pad) + env(safe-area-inset-bottom));display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.cap{display:grid;gap:4px}
+.cap h1{margin:0;font-size:clamp(22px,4vw,44px);font-weight:500;letter-spacing:-.02em;line-height:1.05}
+.cap a{font-size:13px;opacity:.85;border-bottom:1px solid rgba(255,255,255,.5);justify-self:start;padding:6px 0 2px}
+.dots{display:flex;gap:4px;font-size:12px;font-variant-numeric:tabular-nums}
+.dots button{padding:10px 6px;opacity:.45;transition:opacity .3s;position:relative}
+.dots button[aria-current=true]{opacity:1}
+.dots button[aria-current=true]::after{content:"";position:absolute;left:6px;right:6px;bottom:4px;height:1px;background:#fff}
+.scroll{position:absolute;z-index:2;left:50%;bottom:calc(var(--pad) + env(safe-area-inset-bottom));transform:translateX(-50%);font-size:12px;opacity:.7}
+@media (max-width:640px){.scroll{display:none}}
+
+/* toolbar */
+.bar{position:sticky;top:calc(var(--hh) + env(safe-area-inset-top));z-index:40;background:var(--bg);padding:10px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line)}
+.filters{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin:0 calc(var(--pad) * -1);padding:0 var(--pad);mask-image:linear-gradient(90deg,#000 85%,transparent)}
+.filters::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;font-size:13px;padding:7px 12px;border-radius:99px;border:1px solid var(--line);color:var(--muted);transition:all .2s}
+.chip[aria-pressed=true]{background:var(--fg);border-color:var(--fg);color:#fff}
+.size{display:flex;gap:2px;flex:none}
+.size button{width:32px;height:32px;font-size:12px;color:var(--muted);border-radius:6px}
+.size button[aria-pressed=true]{color:var(--fg);background:#f1f1f1}
+
+/* gallery */
+.work{padding:0 var(--pad) clamp(40px,8vw,100px)}
+.proj{padding-top:clamp(28px,5vw,64px)}
+.proj[hidden]{display:none}
+.ph{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
+.ph h2{margin:0;font-size:clamp(18px,2.2vw,24px);font-weight:500;letter-spacing:-.015em}
+.ph h2 span{color:var(--muted);font-weight:400;margin-right:10px;font-size:.75em;font-variant-numeric:tabular-nums}
+.ph p{margin:0;color:var(--muted);font-size:13px;text-align:right}
+.grid{--cols:3;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:var(--gap)}
+body[data-size=s] .grid{--cols:4}
+body[data-size=m] .grid{--cols:3}
+body[data-size=l] .grid{--cols:2}
+@media (max-width:900px){body[data-size=s] .grid{--cols:3}body[data-size=m] .grid{--cols:2}body[data-size=l] .grid{--cols:1}}
+@media (max-width:480px){body[data-size=s] .grid{--cols:3}}
+.tile{position:relative;display:block;width:100%;overflow:hidden;background:#f2f2f2;aspect-ratio:3/2}
+.tile img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s var(--ease),transform .8s var(--ease)}
+.tile img.ok{opacity:1}
+@media (hover:hover){.tile:hover img{transform:scale(1.025)}}
+.tile:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+
+/* video */
+.motion{padding:clamp(40px,7vw,90px) var(--pad);background:#0b0b0b;color:#fff}
+.motion .ph p{color:#8c8c8c}
+.vids{display:grid;gap:clamp(12px,2vw,24px);grid-template-columns:1fr}
+@media (min-width:700px){.vids{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1100px){.vids{grid-template-columns:repeat(3,1fr)}}
+.yt{position:relative;display:block;width:100%;aspect-ratio:16/9;background:#1a1a1a;overflow:hidden}
+.yt img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease),opacity .3s}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yt .play{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;transition:transform .3s var(--ease)}
+.yt .play::before{content:"";margin-left:4px;border-style:solid;border-width:10px 0 10px 16px;border-color:transparent transparent transparent #0b0b0b}
+@media (hover:hover){.yt:hover img{transform:scale(1.03)}.yt:hover .play{transform:scale(1.08)}}
+.vt{margin:10px 0 0;font-size:13px;color:#bdbdbd}
+
+/* info / footer */
+.info{padding:clamp(48px,8vw,110px) var(--pad) calc(32px + env(safe-area-inset-bottom));display:grid;gap:28px;grid-template-columns:1fr}
+@media (min-width:800px){.info{grid-template-columns:1fr 1fr}}
+.info h2{margin:0;font-size:clamp(26px,4.5vw,56px);font-weight:500;letter-spacing:-.03em;line-height:1.02}
+.info p{margin:0 0 6px;color:var(--muted);max-width:36ch}
+.info .links{display:grid;gap:4px;align-content:start;font-size:16px}
+.info .links a{border-bottom:1px solid var(--line);padding:10px 0;display:flex;justify-content:space-between}
+.foot{grid-column:1/-1;display:flex;justify-content:space-between;color:var(--muted);font-size:12px;padding-top:28px;border-top:1px solid var(--line)}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:#0b0b0b;color:#fff;display:none;touch-action:pan-y}
+.lb.open{display:block}
+.lb figure{margin:0;position:absolute;inset:calc(56px + env(safe-area-inset-top)) 0 calc(56px + env(safe-area-inset-bottom))}
+.lb img{width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none;transition:opacity .25s,transform .25s var(--ease)}
+.lb img.fade{opacity:0}
+.lb-top,.lb-bot{position:absolute;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);height:56px;font-size:13px}
+.lb-top{top:env(safe-area-inset-top)}
+.lb-bot{bottom:env(safe-area-inset-bottom);color:#9a9a9a}
+.lb button{min-width:44px;min-height:44px}
+.lb .x{font-size:13px;text-align:right}
+.lb .nav-btn{position:absolute;top:56px;bottom:56px;width:30%;z-index:1}
+.lb .prev{left:0;cursor:w-resize}.lb .next{right:0;cursor:e-resize}
+.lb .arrows{display:flex;gap:8px}
+body.lock{overflow:hidden}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body data-size="m">
+<header class="hdr">
+  <a class="brand" href="#top">Vito Vidović</a>
+  <nav class="nav" aria-label="Main">
+    <a href="#work">Work</a>
+    <a href="#motion">Motion</a>
+    <a href="#info">Info</a>
+  </nav>
+</header>
+
+<main id="top">
+<section class="hero" aria-roledescription="carousel" aria-label="Featured work">
+  <div class="slide on" data-title="Huškaj Festival" data-slug="huskaj-festival"><img srcset="assets/img/huskaj-festival/huskaj-festival-11-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-11-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-11-2048.webp 2048w" sizes="100vw" src="assets/img/huskaj-festival/huskaj-festival-11-1280.webp" alt="Huškaj Festival" width="6000" height="4000" style="object-position:50% 50%" fetchpriority="high" decoding="async"></div>
+  <div class="slide" data-title="Tjedan kajkavske kulture" data-slug="tjedan-kajkavske-kulture"><img data-srcset="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-02-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-02-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-02-2048.webp 2048w" sizes="100vw" data-src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-02-1280.webp" alt="Tjedan kajkavske kulture" width="5919" height="3946" style="object-position:60% 40%" loading="lazy" decoding="async"></div>
+  <div class="slide" data-title="EM Meetup" data-slug="em-meetup"><img data-srcset="assets/img/em-meetup/em-meetup-02-640.webp 640w, assets/img/em-meetup/em-meetup-02-1280.webp 1280w, assets/img/em-meetup/em-meetup-02-2048.webp 2048w" sizes="100vw" data-src="assets/img/em-meetup/em-meetup-02-1280.webp" alt="EM Meetup" width="5202" height="3468" style="object-position:40% 50%" loading="lazy" decoding="async"></div>
+  <div class="hero-ui">
+    <div class="cap">
+      <h1 id="cap-title">Huškaj Festival</h1>
+      <a id="cap-link" href="#huskaj-festival">View project</a>
+    </div>
+    <div class="dots" role="tablist"><button role="tab" aria-current="true" aria-label="Slide 1">01</button><button role="tab" aria-current="false" aria-label="Slide 2">02</button><button role="tab" aria-current="false" aria-label="Slide 3">03</button></div>
+  </div>
+  <a class="scroll" href="#work">Scroll</a>
+</section>
+
+<div class="bar" id="work">
+  <div class="filters" role="group" aria-label="Filter projects">
+    <button class="chip" aria-pressed="true" data-f="all">All</button>
+    <button class="chip" aria-pressed="false" data-f="em-meetup">EM Meetup</button>
+    <button class="chip" aria-pressed="false" data-f="huskaj-festival">Huškaj Festival</button>
+    <button class="chip" aria-pressed="false" data-f="tjedan-kajkavske-kulture">Tjedan kajkavske kulture</button>
+  </div>
+  <div class="size" role="group" aria-label="Grid size">
+    <button data-s="s" aria-pressed="false" aria-label="Small">S</button>
+    <button data-s="m" aria-pressed="true" aria-label="Medium">M</button>
+    <button data-s="l" aria-pressed="false" aria-label="Large">L</button>
+  </div>
+</div>
+
+<section class="work" aria-label="Photography">
+<article class="proj" id="em-meetup" data-title="EM Meetup">
+  <div class="ph"><h2><span>01</span>EM Meetup</h2><p>Zagreb, 2026 &middot; 35</p></div>
+  <div class="grid">
+    <a class="tile" href="assets/img/em-meetup/em-meetup-01-2048.webp" data-src="assets/img/em-meetup/em-meetup-01-2048.webp" data-full="assets/img/em-meetup/em-meetup-01-640.webp 640w, assets/img/em-meetup/em-meetup-01-1280.webp 1280w, assets/img/em-meetup/em-meetup-01-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-01-640.webp" srcset="assets/img/em-meetup/em-meetup-01-640.webp 640w, assets/img/em-meetup/em-meetup-01-1280.webp 1280w, assets/img/em-meetup/em-meetup-01-2048.webp 2048w" sizes="33vw" width="5821" height="3881" loading="lazy" decoding="async" alt="EM Meetup, photo 1"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-02-2048.webp" data-src="assets/img/em-meetup/em-meetup-02-2048.webp" data-full="assets/img/em-meetup/em-meetup-02-640.webp 640w, assets/img/em-meetup/em-meetup-02-1280.webp 1280w, assets/img/em-meetup/em-meetup-02-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-02-640.webp" srcset="assets/img/em-meetup/em-meetup-02-640.webp 640w, assets/img/em-meetup/em-meetup-02-1280.webp 1280w, assets/img/em-meetup/em-meetup-02-2048.webp 2048w" sizes="33vw" width="5202" height="3468" loading="lazy" decoding="async" alt="EM Meetup, photo 2"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-03-2048.webp" data-src="assets/img/em-meetup/em-meetup-03-2048.webp" data-full="assets/img/em-meetup/em-meetup-03-640.webp 640w, assets/img/em-meetup/em-meetup-03-1280.webp 1280w, assets/img/em-meetup/em-meetup-03-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-03-640.webp" srcset="assets/img/em-meetup/em-meetup-03-640.webp 640w, assets/img/em-meetup/em-meetup-03-1280.webp 1280w, assets/img/em-meetup/em-meetup-03-2048.webp 2048w" sizes="33vw" width="5465" height="3643" loading="lazy" decoding="async" alt="EM Meetup, photo 3"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-04-2048.webp" data-src="assets/img/em-meetup/em-meetup-04-2048.webp" data-full="assets/img/em-meetup/em-meetup-04-640.webp 640w, assets/img/em-meetup/em-meetup-04-1280.webp 1280w, assets/img/em-meetup/em-meetup-04-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-04-640.webp" srcset="assets/img/em-meetup/em-meetup-04-640.webp 640w, assets/img/em-meetup/em-meetup-04-1280.webp 1280w, assets/img/em-meetup/em-meetup-04-2048.webp 2048w" sizes="33vw" width="5912" height="3941" loading="lazy" decoding="async" alt="EM Meetup, photo 4"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-05-2048.webp" data-src="assets/img/em-meetup/em-meetup-05-2048.webp" data-full="assets/img/em-meetup/em-meetup-05-640.webp 640w, assets/img/em-meetup/em-meetup-05-1280.webp 1280w, assets/img/em-meetup/em-meetup-05-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-05-640.webp" srcset="assets/img/em-meetup/em-meetup-05-640.webp 640w, assets/img/em-meetup/em-meetup-05-1280.webp 1280w, assets/img/em-meetup/em-meetup-05-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="EM Meetup, photo 5"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-06-2048.webp" data-src="assets/img/em-meetup/em-meetup-06-2048.webp" data-full="assets/img/em-meetup/em-meetup-06-640.webp 640w, assets/img/em-meetup/em-meetup-06-1280.webp 1280w, assets/img/em-meetup/em-meetup-06-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-06-640.webp" srcset="assets/img/em-meetup/em-meetup-06-640.webp 640w, assets/img/em-meetup/em-meetup-06-1280.webp 1280w, assets/img/em-meetup/em-meetup-06-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="EM Meetup, photo 6"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-07-2048.webp" data-src="assets/img/em-meetup/em-meetup-07-2048.webp" data-full="assets/img/em-meetup/em-meetup-07-640.webp 640w, assets/img/em-meetup/em-meetup-07-1280.webp 1280w, assets/img/em-meetup/em-meetup-07-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-07-640.webp" srcset="assets/img/em-meetup/em-meetup-07-640.webp 640w, assets/img/em-meetup/em-meetup-07-1280.webp 1280w, assets/img/em-meetup/em-meetup-07-2048.webp 2048w" sizes="33vw" width="3826" height="2551" loading="lazy" decoding="async" alt="EM Meetup, photo 7"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-08-2048.webp" data-src="assets/img/em-meetup/em-meetup-08-2048.webp" data-full="assets/img/em-meetup/em-meetup-08-640.webp 640w, assets/img/em-meetup/em-meetup-08-1280.webp 1280w, assets/img/em-meetup/em-meetup-08-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-08-640.webp" srcset="assets/img/em-meetup/em-meetup-08-640.webp 640w, assets/img/em-meetup/em-meetup-08-1280.webp 1280w, assets/img/em-meetup/em-meetup-08-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="EM Meetup, photo 8"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-09-2048.webp" data-src="assets/img/em-meetup/em-meetup-09-2048.webp" data-full="assets/img/em-meetup/em-meetup-09-640.webp 640w, assets/img/em-meetup/em-meetup-09-1280.webp 1280w, assets/img/em-meetup/em-meetup-09-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-09-640.webp" srcset="assets/img/em-meetup/em-meetup-09-640.webp 640w, assets/img/em-meetup/em-meetup-09-1280.webp 1280w, assets/img/em-meetup/em-meetup-09-2048.webp 2048w" sizes="33vw" width="5283" height="3522" loading="lazy" decoding="async" alt="EM Meetup, photo 9"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-10-2048.webp" data-src="assets/img/em-meetup/em-meetup-10-2048.webp" data-full="assets/img/em-meetup/em-meetup-10-640.webp 640w, assets/img/em-meetup/em-meetup-10-1280.webp 1280w, assets/img/em-meetup/em-meetup-10-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-10-640.webp" srcset="assets/img/em-meetup/em-meetup-10-640.webp 640w, assets/img/em-meetup/em-meetup-10-1280.webp 1280w, assets/img/em-meetup/em-meetup-10-2048.webp 2048w" sizes="33vw" width="5224" height="3483" loading="lazy" decoding="async" alt="EM Meetup, photo 10"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-11-2048.webp" data-src="assets/img/em-meetup/em-meetup-11-2048.webp" data-full="assets/img/em-meetup/em-meetup-11-640.webp 640w, assets/img/em-meetup/em-meetup-11-1280.webp 1280w, assets/img/em-meetup/em-meetup-11-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-11-640.webp" srcset="assets/img/em-meetup/em-meetup-11-640.webp 640w, assets/img/em-meetup/em-meetup-11-1280.webp 1280w, assets/img/em-meetup/em-meetup-11-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="EM Meetup, photo 11"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-12-2048.webp" data-src="assets/img/em-meetup/em-meetup-12-2048.webp" data-full="assets/img/em-meetup/em-meetup-12-640.webp 640w, assets/img/em-meetup/em-meetup-12-1280.webp 1280w, assets/img/em-meetup/em-meetup-12-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-12-640.webp" srcset="assets/img/em-meetup/em-meetup-12-640.webp 640w, assets/img/em-meetup/em-meetup-12-1280.webp 1280w, assets/img/em-meetup/em-meetup-12-2048.webp 2048w" sizes="33vw" width="4964" height="3309" loading="lazy" decoding="async" alt="EM Meetup, photo 12"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-13-2048.webp" data-src="assets/img/em-meetup/em-meetup-13-2048.webp" data-full="assets/img/em-meetup/em-meetup-13-640.webp 640w, assets/img/em-meetup/em-meetup-13-1280.webp 1280w, assets/img/em-meetup/em-meetup-13-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-13-640.webp" srcset="assets/img/em-meetup/em-meetup-13-640.webp 640w, assets/img/em-meetup/em-meetup-13-1280.webp 1280w, assets/img/em-meetup/em-meetup-13-2048.webp 2048w" sizes="33vw" width="4431" height="2954" loading="lazy" decoding="async" alt="EM Meetup, photo 13"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-14-2048.webp" data-src="assets/img/em-meetup/em-meetup-14-2048.webp" data-full="assets/img/em-meetup/em-meetup-14-640.webp 640w, assets/img/em-meetup/em-meetup-14-1280.webp 1280w, assets/img/em-meetup/em-meetup-14-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-14-640.webp" srcset="assets/img/em-meetup/em-meetup-14-640.webp 640w, assets/img/em-meetup/em-meetup-14-1280.webp 1280w, assets/img/em-meetup/em-meetup-14-2048.webp 2048w" sizes="33vw" width="5033" height="3355" loading="lazy" decoding="async" alt="EM Meetup, photo 14"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-15-2048.webp" data-src="assets/img/em-meetup/em-meetup-15-2048.webp" data-full="assets/img/em-meetup/em-meetup-15-640.webp 640w, assets/img/em-meetup/em-meetup-15-1280.webp 1280w, assets/img/em-meetup/em-meetup-15-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-15-640.webp" srcset="assets/img/em-meetup/em-meetup-15-640.webp 640w, assets/img/em-meetup/em-meetup-15-1280.webp 1280w, assets/img/em-meetup/em-meetup-15-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="EM Meetup, photo 15"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-16-2048.webp" data-src="assets/img/em-meetup/em-meetup-16-2048.webp" data-full="assets/img/em-meetup/em-meetup-16-640.webp 640w, assets/img/em-meetup/em-meetup-16-1280.webp 1280w, assets/img/em-meetup/em-meetup-16-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-16-640.webp" srcset="assets/img/em-meetup/em-meetup-16-640.webp 640w, assets/img/em-meetup/em-meetup-16-1280.webp 1280w, assets/img/em-meetup/em-meetup-16-2048.webp 2048w" sizes="33vw" width="5088" height="3392" loading="lazy" decoding="async" alt="EM Meetup, photo 16"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-17-2048.webp" data-src="assets/img/em-meetup/em-meetup-17-2048.webp" data-full="assets/img/em-meetup/em-meetup-17-640.webp 640w, assets/img/em-meetup/em-meetup-17-1280.webp 1280w, assets/img/em-meetup/em-meetup-17-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-17-640.webp" srcset="assets/img/em-meetup/em-meetup-17-640.webp 640w, assets/img/em-meetup/em-meetup-17-1280.webp 1280w, assets/img/em-meetup/em-meetup-17-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="EM Meetup, photo 17"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-18-2048.webp" data-src="assets/img/em-meetup/em-meetup-18-2048.webp" data-full="assets/img/em-meetup/em-meetup-18-640.webp 640w, assets/img/em-meetup/em-meetup-18-1280.webp 1280w, assets/img/em-meetup/em-meetup-18-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-18-640.webp" srcset="assets/img/em-meetup/em-meetup-18-640.webp 640w, assets/img/em-meetup/em-meetup-18-1280.webp 1280w, assets/img/em-meetup/em-meetup-18-2048.webp 2048w" sizes="33vw" width="4532" height="3021" loading="lazy" decoding="async" alt="EM Meetup, photo 18"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-19-2048.webp" data-src="assets/img/em-meetup/em-meetup-19-2048.webp" data-full="assets/img/em-meetup/em-meetup-19-640.webp 640w, assets/img/em-meetup/em-meetup-19-1280.webp 1280w, assets/img/em-meetup/em-meetup-19-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-19-640.webp" srcset="assets/img/em-meetup/em-meetup-19-640.webp 640w, assets/img/em-meetup/em-meetup-19-1280.webp 1280w, assets/img/em-meetup/em-meetup-19-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="EM Meetup, photo 19"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-20-2048.webp" data-src="assets/img/em-meetup/em-meetup-20-2048.webp" data-full="assets/img/em-meetup/em-meetup-20-640.webp 640w, assets/img/em-meetup/em-meetup-20-1280.webp 1280w, assets/img/em-meetup/em-meetup-20-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-20-640.webp" srcset="assets/img/em-meetup/em-meetup-20-640.webp 640w, assets/img/em-meetup/em-meetup-20-1280.webp 1280w, assets/img/em-meetup/em-meetup-20-2048.webp 2048w" sizes="33vw" width="5031" height="3354" loading="lazy" decoding="async" alt="EM Meetup, photo 20"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-21-2048.webp" data-src="assets/img/em-meetup/em-meetup-21-2048.webp" data-full="assets/img/em-meetup/em-meetup-21-640.webp 640w, assets/img/em-meetup/em-meetup-21-1280.webp 1280w, assets/img/em-meetup/em-meetup-21-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-21-640.webp" srcset="assets/img/em-meetup/em-meetup-21-640.webp 640w, assets/img/em-meetup/em-meetup-21-1280.webp 1280w, assets/img/em-meetup/em-meetup-21-2048.webp 2048w" sizes="33vw" width="4582" height="3055" loading="lazy" decoding="async" alt="EM Meetup, photo 21"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-22-2048.webp" data-src="assets/img/em-meetup/em-meetup-22-2048.webp" data-full="assets/img/em-meetup/em-meetup-22-640.webp 640w, assets/img/em-meetup/em-meetup-22-1280.webp 1280w, assets/img/em-meetup/em-meetup-22-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-22-640.webp" srcset="assets/img/em-meetup/em-meetup-22-640.webp 640w, assets/img/em-meetup/em-meetup-22-1280.webp 1280w, assets/img/em-meetup/em-meetup-22-2048.webp 2048w" sizes="33vw" width="5730" height="3820" loading="lazy" decoding="async" alt="EM Meetup, photo 22"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-23-2048.webp" data-src="assets/img/em-meetup/em-meetup-23-2048.webp" data-full="assets/img/em-meetup/em-meetup-23-640.webp 640w, assets/img/em-meetup/em-meetup-23-1280.webp 1280w, assets/img/em-meetup/em-meetup-23-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-23-640.webp" srcset="assets/img/em-meetup/em-meetup-23-640.webp 640w, assets/img/em-meetup/em-meetup-23-1280.webp 1280w, assets/img/em-meetup/em-meetup-23-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="EM Meetup, photo 23"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-24-2048.webp" data-src="assets/img/em-meetup/em-meetup-24-2048.webp" data-full="assets/img/em-meetup/em-meetup-24-640.webp 640w, assets/img/em-meetup/em-meetup-24-1280.webp 1280w, assets/img/em-meetup/em-meetup-24-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-24-640.webp" srcset="assets/img/em-meetup/em-meetup-24-640.webp 640w, assets/img/em-meetup/em-meetup-24-1280.webp 1280w, assets/img/em-meetup/em-meetup-24-2048.webp 2048w" sizes="33vw" width="5188" height="3459" loading="lazy" decoding="async" alt="EM Meetup, photo 24"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-25-2048.webp" data-src="assets/img/em-meetup/em-meetup-25-2048.webp" data-full="assets/img/em-meetup/em-meetup-25-640.webp 640w, assets/img/em-meetup/em-meetup-25-1280.webp 1280w, assets/img/em-meetup/em-meetup-25-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-25-640.webp" srcset="assets/img/em-meetup/em-meetup-25-640.webp 640w, assets/img/em-meetup/em-meetup-25-1280.webp 1280w, assets/img/em-meetup/em-meetup-25-2048.webp 2048w" sizes="33vw" width="5192" height="3461" loading="lazy" decoding="async" alt="EM Meetup, photo 25"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-26-2048.webp" data-src="assets/img/em-meetup/em-meetup-26-2048.webp" data-full="assets/img/em-meetup/em-meetup-26-640.webp 640w, assets/img/em-meetup/em-meetup-26-1280.webp 1280w, assets/img/em-meetup/em-meetup-26-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-26-640.webp" srcset="assets/img/em-meetup/em-meetup-26-640.webp 640w, assets/img/em-meetup/em-meetup-26-1280.webp 1280w, assets/img/em-meetup/em-meetup-26-2048.webp 2048w" sizes="33vw" width="4172" height="2781" loading="lazy" decoding="async" alt="EM Meetup, photo 26"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-27-2048.webp" data-src="assets/img/em-meetup/em-meetup-27-2048.webp" data-full="assets/img/em-meetup/em-meetup-27-640.webp 640w, assets/img/em-meetup/em-meetup-27-1280.webp 1280w, assets/img/em-meetup/em-meetup-27-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-27-640.webp" srcset="assets/img/em-meetup/em-meetup-27-640.webp 640w, assets/img/em-meetup/em-meetup-27-1280.webp 1280w, assets/img/em-meetup/em-meetup-27-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="EM Meetup, photo 27"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-28-2048.webp" data-src="assets/img/em-meetup/em-meetup-28-2048.webp" data-full="assets/img/em-meetup/em-meetup-28-640.webp 640w, assets/img/em-meetup/em-meetup-28-1280.webp 1280w, assets/img/em-meetup/em-meetup-28-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-28-640.webp" srcset="assets/img/em-meetup/em-meetup-28-640.webp 640w, assets/img/em-meetup/em-meetup-28-1280.webp 1280w, assets/img/em-meetup/em-meetup-28-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="EM Meetup, photo 28"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-29-2048.webp" data-src="assets/img/em-meetup/em-meetup-29-2048.webp" data-full="assets/img/em-meetup/em-meetup-29-640.webp 640w, assets/img/em-meetup/em-meetup-29-1280.webp 1280w, assets/img/em-meetup/em-meetup-29-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-29-640.webp" srcset="assets/img/em-meetup/em-meetup-29-640.webp 640w, assets/img/em-meetup/em-meetup-29-1280.webp 1280w, assets/img/em-meetup/em-meetup-29-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="EM Meetup, photo 29"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-30-2048.webp" data-src="assets/img/em-meetup/em-meetup-30-2048.webp" data-full="assets/img/em-meetup/em-meetup-30-640.webp 640w, assets/img/em-meetup/em-meetup-30-1280.webp 1280w, assets/img/em-meetup/em-meetup-30-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-30-640.webp" srcset="assets/img/em-meetup/em-meetup-30-640.webp 640w, assets/img/em-meetup/em-meetup-30-1280.webp 1280w, assets/img/em-meetup/em-meetup-30-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="EM Meetup, photo 30"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-31-2048.webp" data-src="assets/img/em-meetup/em-meetup-31-2048.webp" data-full="assets/img/em-meetup/em-meetup-31-640.webp 640w, assets/img/em-meetup/em-meetup-31-1280.webp 1280w, assets/img/em-meetup/em-meetup-31-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-31-640.webp" srcset="assets/img/em-meetup/em-meetup-31-640.webp 640w, assets/img/em-meetup/em-meetup-31-1280.webp 1280w, assets/img/em-meetup/em-meetup-31-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="EM Meetup, photo 31"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-32-2048.webp" data-src="assets/img/em-meetup/em-meetup-32-2048.webp" data-full="assets/img/em-meetup/em-meetup-32-640.webp 640w, assets/img/em-meetup/em-meetup-32-1280.webp 1280w, assets/img/em-meetup/em-meetup-32-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-32-640.webp" srcset="assets/img/em-meetup/em-meetup-32-640.webp 640w, assets/img/em-meetup/em-meetup-32-1280.webp 1280w, assets/img/em-meetup/em-meetup-32-2048.webp 2048w" sizes="33vw" width="4627" height="3085" loading="lazy" decoding="async" alt="EM Meetup, photo 32"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-33-2048.webp" data-src="assets/img/em-meetup/em-meetup-33-2048.webp" data-full="assets/img/em-meetup/em-meetup-33-640.webp 640w, assets/img/em-meetup/em-meetup-33-1280.webp 1280w, assets/img/em-meetup/em-meetup-33-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-33-640.webp" srcset="assets/img/em-meetup/em-meetup-33-640.webp 640w, assets/img/em-meetup/em-meetup-33-1280.webp 1280w, assets/img/em-meetup/em-meetup-33-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="EM Meetup, photo 33"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-34-2048.webp" data-src="assets/img/em-meetup/em-meetup-34-2048.webp" data-full="assets/img/em-meetup/em-meetup-34-640.webp 640w, assets/img/em-meetup/em-meetup-34-1280.webp 1280w, assets/img/em-meetup/em-meetup-34-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-34-640.webp" srcset="assets/img/em-meetup/em-meetup-34-640.webp 640w, assets/img/em-meetup/em-meetup-34-1280.webp 1280w, assets/img/em-meetup/em-meetup-34-2048.webp 2048w" sizes="33vw" width="5026" height="3351" loading="lazy" decoding="async" alt="EM Meetup, photo 34"></a>
+    <a class="tile" href="assets/img/em-meetup/em-meetup-35-2048.webp" data-src="assets/img/em-meetup/em-meetup-35-2048.webp" data-full="assets/img/em-meetup/em-meetup-35-640.webp 640w, assets/img/em-meetup/em-meetup-35-1280.webp 1280w, assets/img/em-meetup/em-meetup-35-2048.webp 2048w"><img src="assets/img/em-meetup/em-meetup-35-640.webp" srcset="assets/img/em-meetup/em-meetup-35-640.webp 640w, assets/img/em-meetup/em-meetup-35-1280.webp 1280w, assets/img/em-meetup/em-meetup-35-2048.webp 2048w" sizes="33vw" width="5197" height="3465" loading="lazy" decoding="async" alt="EM Meetup, photo 35"></a>
+  </div>
+</article>
+<article class="proj" id="huskaj-festival" data-title="Huškaj Festival">
+  <div class="ph"><h2><span>02</span>Huškaj Festival</h2><p>2025 &middot; 11</p></div>
+  <div class="grid">
+    <a class="tile" href="assets/img/huskaj-festival/huskaj-festival-01-2048.webp" data-src="assets/img/huskaj-festival/huskaj-festival-01-2048.webp" data-full="assets/img/huskaj-festival/huskaj-festival-01-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-01-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-01-2048.webp 2048w"><img src="assets/img/huskaj-festival/huskaj-festival-01-640.webp" srcset="assets/img/huskaj-festival/huskaj-festival-01-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-01-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-01-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="Huškaj Festival, photo 1"></a>
+    <a class="tile" href="assets/img/huskaj-festival/huskaj-festival-02-2048.webp" data-src="assets/img/huskaj-festival/huskaj-festival-02-2048.webp" data-full="assets/img/huskaj-festival/huskaj-festival-02-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-02-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-02-2048.webp 2048w"><img src="assets/img/huskaj-festival/huskaj-festival-02-640.webp" srcset="assets/img/huskaj-festival/huskaj-festival-02-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-02-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-02-2048.webp 2048w" sizes="33vw" width="5754" height="3836" loading="lazy" decoding="async" alt="Huškaj Festival, photo 2"></a>
+    <a class="tile" href="assets/img/huskaj-festival/huskaj-festival-03-2048.webp" data-src="assets/img/huskaj-festival/huskaj-festival-03-2048.webp" data-full="assets/img/huskaj-festival/huskaj-festival-03-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-03-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-03-2048.webp 2048w"><img src="assets/img/huskaj-festival/huskaj-festival-03-640.webp" srcset="assets/img/huskaj-festival/huskaj-festival-03-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-03-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-03-2048.webp 2048w" sizes="33vw" width="5712" height="3808" loading="lazy" decoding="async" alt="Huškaj Festival, photo 3"></a>
+    <a class="tile" href="assets/img/huskaj-festival/huskaj-festival-04-2048.webp" data-src="assets/img/huskaj-festival/huskaj-festival-04-2048.webp" data-full="assets/img/huskaj-festival/huskaj-festival-04-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-04-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-04-2048.webp 2048w"><img src="assets/img/huskaj-festival/huskaj-festival-04-640.webp" srcset="assets/img/huskaj-festival/huskaj-festival-04-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-04-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-04-2048.webp 2048w" sizes="33vw" width="5801" height="3867" loading="lazy" decoding="async" alt="Huškaj Festival, photo 4"></a>
+    <a class="tile" href="assets/img/huskaj-festival/huskaj-festival-05-2048.webp" data-src="assets/img/huskaj-festival/huskaj-festival-05-2048.webp" data-full="assets/img/huskaj-festival/huskaj-festival-05-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-05-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-05-2048.webp 2048w"><img src="assets/img/huskaj-festival/huskaj-festival-05-640.webp" srcset="assets/img/huskaj-festival/huskaj-festival-05-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-05-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-05-2048.webp 2048w" sizes="33vw" width="5797" height="3865" loading="lazy" decoding="async" alt="Huškaj Festival, photo 5"></a>
+    <a class="tile" href="assets/img/huskaj-festival/huskaj-festival-06-2048.webp" data-src="assets/img/huskaj-festival/huskaj-festival-06-2048.webp" data-full="assets/img/huskaj-festival/huskaj-festival-06-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-06-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-06-2048.webp 2048w"><img src="assets/img/huskaj-festival/huskaj-festival-06-640.webp" srcset="assets/img/huskaj-festival/huskaj-festival-06-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-06-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-06-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="Huškaj Festival, photo 6"></a>
+    <a class="tile" href="assets/img/huskaj-festival/huskaj-festival-07-2048.webp" data-src="assets/img/huskaj-festival/huskaj-festival-07-2048.webp" data-full="assets/img/huskaj-festival/huskaj-festival-07-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-07-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-07-2048.webp 2048w"><img src="assets/img/huskaj-festival/huskaj-festival-07-640.webp" srcset="assets/img/huskaj-festival/huskaj-festival-07-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-07-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-07-2048.webp 2048w" sizes="33vw" width="4129" height="2753" loading="lazy" decoding="async" alt="Huškaj Festival, photo 7"></a>
+    <a class="tile" href="assets/img/huskaj-festival/huskaj-festival-08-2048.webp" data-src="assets/img/huskaj-festival/huskaj-festival-08-2048.webp" data-full="assets/img/huskaj-festival/huskaj-festival-08-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-08-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-08-2048.webp 2048w"><img src="assets/img/huskaj-festival/huskaj-festival-08-640.webp" srcset="assets/img/huskaj-festival/huskaj-festival-08-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-08-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-08-2048.webp 2048w" sizes="33vw" width="7008" height="4672" loading="lazy" decoding="async" alt="Huškaj Festival, photo 8"></a>
+    <a class="tile" href="assets/img/huskaj-festival/huskaj-festival-09-2048.webp" data-src="assets/img/huskaj-festival/huskaj-festival-09-2048.webp" data-full="assets/img/huskaj-festival/huskaj-festival-09-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-09-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-09-2048.webp 2048w"><img src="assets/img/huskaj-festival/huskaj-festival-09-640.webp" srcset="assets/img/huskaj-festival/huskaj-festival-09-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-09-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-09-2048.webp 2048w" sizes="33vw" width="5849" height="3899" loading="lazy" decoding="async" alt="Huškaj Festival, photo 9"></a>
+    <a class="tile" href="assets/img/huskaj-festival/huskaj-festival-10-2048.webp" data-src="assets/img/huskaj-festival/huskaj-festival-10-2048.webp" data-full="assets/img/huskaj-festival/huskaj-festival-10-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-10-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-10-2048.webp 2048w"><img src="assets/img/huskaj-festival/huskaj-festival-10-640.webp" srcset="assets/img/huskaj-festival/huskaj-festival-10-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-10-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-10-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="Huškaj Festival, photo 10"></a>
+    <a class="tile" href="assets/img/huskaj-festival/huskaj-festival-11-2048.webp" data-src="assets/img/huskaj-festival/huskaj-festival-11-2048.webp" data-full="assets/img/huskaj-festival/huskaj-festival-11-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-11-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-11-2048.webp 2048w"><img src="assets/img/huskaj-festival/huskaj-festival-11-640.webp" srcset="assets/img/huskaj-festival/huskaj-festival-11-640.webp 640w, assets/img/huskaj-festival/huskaj-festival-11-1280.webp 1280w, assets/img/huskaj-festival/huskaj-festival-11-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="Huškaj Festival, photo 11"></a>
+  </div>
+</article>
+<article class="proj" id="tjedan-kajkavske-kulture" data-title="Tjedan kajkavske kulture">
+  <div class="ph"><h2><span>03</span>Tjedan kajkavske kulture</h2><p>2024 &middot; 12</p></div>
+  <div class="grid">
+    <a class="tile" href="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-01-2048.webp" data-src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-01-2048.webp" data-full="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-01-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-01-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-01-2048.webp 2048w"><img src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-01-640.webp" srcset="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-01-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-01-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-01-2048.webp 2048w" sizes="33vw" width="5871" height="3914" loading="lazy" decoding="async" alt="Tjedan kajkavske kulture, photo 1"></a>
+    <a class="tile" href="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-02-2048.webp" data-src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-02-2048.webp" data-full="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-02-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-02-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-02-2048.webp 2048w"><img src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-02-640.webp" srcset="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-02-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-02-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-02-2048.webp 2048w" sizes="33vw" width="5919" height="3946" loading="lazy" decoding="async" alt="Tjedan kajkavske kulture, photo 2"></a>
+    <a class="tile" href="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-03-2048.webp" data-src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-03-2048.webp" data-full="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-03-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-03-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-03-2048.webp 2048w"><img src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-03-640.webp" srcset="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-03-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-03-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-03-2048.webp 2048w" sizes="33vw" width="6262" height="4175" loading="lazy" decoding="async" alt="Tjedan kajkavske kulture, photo 3"></a>
+    <a class="tile" href="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-04-2048.webp" data-src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-04-2048.webp" data-full="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-04-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-04-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-04-2048.webp 2048w"><img src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-04-640.webp" srcset="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-04-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-04-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-04-2048.webp 2048w" sizes="33vw" width="7008" height="4672" loading="lazy" decoding="async" alt="Tjedan kajkavske kulture, photo 4"></a>
+    <a class="tile" href="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-05-2048.webp" data-src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-05-2048.webp" data-full="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-05-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-05-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-05-2048.webp 2048w"><img src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-05-640.webp" srcset="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-05-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-05-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-05-2048.webp 2048w" sizes="33vw" width="7008" height="4672" loading="lazy" decoding="async" alt="Tjedan kajkavske kulture, photo 5"></a>
+    <a class="tile" href="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-06-2048.webp" data-src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-06-2048.webp" data-full="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-06-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-06-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-06-2048.webp 2048w"><img src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-06-640.webp" srcset="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-06-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-06-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-06-2048.webp 2048w" sizes="33vw" width="5882" height="3921" loading="lazy" decoding="async" alt="Tjedan kajkavske kulture, photo 6"></a>
+    <a class="tile" href="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-07-2048.webp" data-src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-07-2048.webp" data-full="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-07-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-07-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-07-2048.webp 2048w"><img src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-07-640.webp" srcset="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-07-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-07-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-07-2048.webp 2048w" sizes="33vw" width="7008" height="4672" loading="lazy" decoding="async" alt="Tjedan kajkavske kulture, photo 7"></a>
+    <a class="tile" href="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-08-2048.webp" data-src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-08-2048.webp" data-full="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-08-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-08-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-08-2048.webp 2048w"><img src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-08-640.webp" srcset="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-08-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-08-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-08-2048.webp 2048w" sizes="33vw" width="6000" height="4000" loading="lazy" decoding="async" alt="Tjedan kajkavske kulture, photo 8"></a>
+    <a class="tile" href="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-09-2048.webp" data-src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-09-2048.webp" data-full="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-09-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-09-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-09-2048.webp 2048w"><img src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-09-640.webp" srcset="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-09-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-09-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-09-2048.webp 2048w" sizes="33vw" width="5752" height="3835" loading="lazy" decoding="async" alt="Tjedan kajkavske kulture, photo 9"></a>
+    <a class="tile" href="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-10-2048.webp" data-src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-10-2048.webp" data-full="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-10-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-10-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-10-2048.webp 2048w"><img src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-10-640.webp" srcset="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-10-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-10-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-10-2048.webp 2048w" sizes="33vw" width="7008" height="4672" loading="lazy" decoding="async" alt="Tjedan kajkavske kulture, photo 10"></a>
+    <a class="tile" href="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-11-2048.webp" data-src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-11-2048.webp" data-full="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-11-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-11-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-11-2048.webp 2048w"><img src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-11-640.webp" srcset="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-11-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-11-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-11-2048.webp 2048w" sizes="33vw" width="6913" height="4609" loading="lazy" decoding="async" alt="Tjedan kajkavske kulture, photo 11"></a>
+    <a class="tile" href="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-12-2048.webp" data-src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-12-2048.webp" data-full="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-12-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-12-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-12-2048.webp 2048w"><img src="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-12-640.webp" srcset="assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-12-640.webp 640w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-12-1280.webp 1280w, assets/img/tjedan-kajkavske-kulture/tjedan-kajkavske-kulture-12-2048.webp 2048w" sizes="33vw" width="4263" height="2842" loading="lazy" decoding="async" alt="Tjedan kajkavske kulture, photo 12"></a>
+  </div>
+</article>
+</section>
+
+<section class="motion" id="motion" aria-label="Video">
+  <div class="ph"><h2><span>04</span>Motion</h2><p>3 videos</p></div>
+  <div class="vids">
+    <div><button class="yt" data-id="GqLuWwqpiK8" aria-label="Play: Tjedan kajkavske kulture 2023"><img src="https://i.ytimg.com/vi/GqLuWwqpiK8/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="play" aria-hidden="true"></span></button><p class="vt">Tjedan kajkavske kulture 2023</p></div>
+    <div><button class="yt" data-id="kBzRV9EzbL0" aria-label="Play: Noć krapinskog pračovjeka 2023"><img src="https://i.ytimg.com/vi/kBzRV9EzbL0/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="play" aria-hidden="true"></span></button><p class="vt">Noć krapinskog pračovjeka 2023</p></div>
+    <div><button class="yt" data-id="vI7pJYGoHDE" aria-label="Play: KraKon 2023 · Aftermovie"><img src="https://i.ytimg.com/vi/vI7pJYGoHDE/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="play" aria-hidden="true"></span></button><p class="vt">KraKon 2023 · Aftermovie</p></div>
+  </div>
+</section>
+
+<section class="info" id="info">
+  <div>
+    <h2>Vito Vidović</h2>
+    <p>Event, festival and live music photography. Based in Zagreb, Croatia.</p>
+  </div>
+  <div class="links">
+    <a href="#work"><span>Work</span><span>&darr;</span></a>
+    <a href="#motion"><span>Motion</span><span>&darr;</span></a>
+  </div>
+  <div class="foot"><span>&copy; 2026 Vito Vidović</span><a href="#top">Back to top &uarr;</a></div>
+</section>
+</main>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb-top"><span id="lb-count"></span><button class="x" id="lb-x">Close</button></div>
+  <button class="nav-btn prev" id="lb-prev" aria-label="Previous image"></button>
+  <button class="nav-btn next" id="lb-next" aria-label="Next image"></button>
+  <figure><img id="lb-img" alt=""></figure>
+  <div class="lb-bot"><span id="lb-cap"></span><span class="arrows"><button id="lb-p2" aria-label="Previous">&larr;</button><button id="lb-n2" aria-label="Next">&rarr;</button></span></div>
+</div>
+
+<script>
+(()=>{
+const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+const B=document.body;
+
+/* fade-in thumbnails */
+$$('.tile img').forEach(i=>{if(i.complete&&i.naturalWidth)i.classList.add('ok');else i.addEventListener('load',()=>i.classList.add('ok'),{once:true})});
+
+/* hero slideshow */
+const slides=$$('.slide'),dots=$$('.dots button'),title=$('#cap-title'),link=$('#cap-link');
+let cur=0,timer;
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function show(n){
+  n=(n+slides.length)%slides.length;
+  const s=slides[n],img=$('img',s);
+  wake(img);
+  slides[cur].classList.remove('on');dots[cur].setAttribute('aria-current','false');
+  s.classList.add('on');dots[n].setAttribute('aria-current','true');
+  title.textContent=s.dataset.title;link.href='#'+s.dataset.slug;cur=n;
+}
+function play(){clearInterval(timer);if(!reduce)timer=setInterval(()=>show(cur+1),5500)}
+dots.forEach((d,i)=>d.addEventListener('click',()=>{show(i);play()}));
+let hx=null;const hero=$('.hero');
+hero.addEventListener('touchstart',e=>{hx=e.touches[0].clientX},{passive:true});
+hero.addEventListener('touchend',e=>{if(hx==null)return;const dx=e.changedTouches[0].clientX-hx;if(Math.abs(dx)>40){show(cur+(dx<0?1:-1));play()}hx=null});
+document.addEventListener('visibilitychange',()=>document.hidden?clearInterval(timer):play());
+function wake(i){if(i.dataset.srcset){i.srcset=i.dataset.srcset;i.src=i.dataset.src;i.removeAttribute('data-srcset')}}
+window.addEventListener('load',()=>setTimeout(()=>$$('.slide img[data-srcset]').forEach(wake),800));
+play();
+
+/* solid header after hero */
+const hdr=$('.hdr');new IntersectionObserver(([e])=>hdr.classList.toggle('solid',!e.isIntersecting),{rootMargin:`-${hdr.offsetHeight+2}px 0px 0px 0px`}).observe(hero);
+
+/* grid size */
+const SIZES={s:[4,3,3],m:[3,2,2],l:[2,1,1]};
+function setSizes(){
+  const k=B.dataset.size,w=innerWidth,c=w<=480?SIZES[k][2]:w<=900?SIZES[k][1]:SIZES[k][0];
+  const v=`calc((100vw - ${c>1?2*Math.min(40,Math.max(16,w*.03)):32}px) / ${c})`;
+  $$('.tile img').forEach(i=>i.sizes=v);
+}
+function setSize(k,save){
+  B.dataset.size=k;$$('.size button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.s===k));
+  setSizes();if(save)try{localStorage.setItem('gs',k)}catch(e){}
+}
+let saved=null;try{saved=localStorage.getItem('gs')}catch(e){}
+setSize(saved||(innerWidth<=640?'l':'m'));
+$$('.size button').forEach(b=>b.addEventListener('click',()=>setSize(b.dataset.s,true)));
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(setSizes,200)});
+
+/* filters */
+$$('.chip').forEach(c=>c.addEventListener('click',()=>{
+  const f=c.dataset.f;
+  $$('.chip').forEach(x=>x.setAttribute('aria-pressed',x===c));
+  $$('.proj').forEach(p=>p.hidden=!(f==='all'||p.id===f));
+  const bar=$('.bar'),y=$('.work').getBoundingClientRect().top+scrollY-bar.offsetHeight-hdr.offsetHeight;
+  if(scrollY>y||f!=='all')scrollTo({top:y,behavior:reduce?'auto':'smooth'});
+}));
+
+/* lightbox */
+const lb=$('#lb'),li=$('#lb-img'),lc=$('#lb-count'),lcap=$('#lb-cap');
+let list=[],idx=0,open=false;
+function src(t){return{srcset:t.dataset.full,src:t.dataset.src,alt:$('img',t).alt,cap:t.closest('.proj').dataset.title}}
+function render(){
+  const d=src(list[idx]);
+  li.classList.add('fade');
+  const n=new Image();n.sizes='100vw';n.srcset=d.srcset;n.src=d.src;
+  const go=()=>{li.sizes='100vw';li.srcset=d.srcset;li.src=d.src;li.alt=d.alt;li.classList.remove('fade')};
+  n.decode?n.decode().then(go,go):(n.onload=go);
+  lc.textContent=`${idx+1} / ${list.length}`;lcap.textContent=d.cap;
+  [idx+1,idx-1].forEach(k=>{const t=list[(k+list.length)%list.length];if(t){const p=new Image();p.sizes='100vw';p.srcset=t.dataset.full}});
+}
+function openLb(t){
+  list=$$('.proj:not([hidden]) .tile');idx=list.indexOf(t);
+  lb.classList.add('open');B.classList.add('lock');open=true;render();
+  history.pushState({lb:1},'');$('#lb-x').focus({preventScroll:true});
+}
+function closeLb(fromPop){
+  if(!open)return;open=false;lb.classList.remove('open');B.classList.remove('lock');
+  list[idx]&&list[idx].focus({preventScroll:true});
+  if(!fromPop&&history.state&&history.state.lb)history.back();
+}
+const step=d=>{idx=(idx+d+list.length)%list.length;render()};
+$$('.tile').forEach(t=>t.addEventListener('click',e=>{e.preventDefault();openLb(t)}));
+$('#lb-x').onclick=()=>closeLb();
+$('#lb-prev').onclick=$('#lb-p2').onclick=()=>step(-1);
+$('#lb-next').onclick=$('#lb-n2').onclick=()=>step(1);
+addEventListener('popstate',()=>closeLb(true));
+addEventListener('keydown',e=>{if(!open)return;if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
+let sx=0,sy=0;
+lb.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+lb.addEventListener('touchmove',e=>{const dx=e.touches[0].clientX-sx;if(Math.abs(dx)>Math.abs(e.touches[0].clientY-sy))li.style.transform=`translateX(${dx*.4}px)`},{passive:true});
+lb.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;li.style.transform='';
+  if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))step(dx<0?1:-1);
+  else if(dy>90&&Math.abs(dy)>Math.abs(dx))closeLb();
+});
+
+/* lite youtube */
+$$('.yt').forEach(b=>b.addEventListener('click',()=>{
+  const f=document.createElement('iframe');
+  f.src=`https://www.youtube-nocookie.com/embed/${b.dataset.id}?autoplay=1&rel=0&playsinline=1`;
+  f.title=b.getAttribute('aria-label');f.allow='accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share';f.allowFullscreen=true;
+  const w=document.createElement('div');w.className='yt';w.appendChild(f);b.replaceWith(w);
+},{once:true}));
+})();
+</script>
+</body>
+</html>
